@@ -20,6 +20,13 @@ const (
 	formFieldExportHiddenSlides              string = "exportHiddenSlides"
 	formFieldSkipEmptyPages                  string = "skipEmptyPages"
 	formFieldAddOriginalDocumentAsStream     string = "addOriginalDocumentAsStream"
+	formFieldMerge                           string = "merge" // Pd473
+	formFieldPdfa                            string = "pdfa" // P867e
+	formFieldPdfua                           string = "pdfua" // P72e1
+	formFieldLosslessImageCompression        string = "losslessImageCompression" // P2592
+	formFieldQuality                         string = "quality" // P1ed9
+	formFieldReduceImageResolution           string = "reduceImageResolution" // P32cd
+	formFieldMaxImageResolution              string = "maxImageResolution" // P6352
 )
 
 // OfficeRequest facilitates Office documents
@@ -116,6 +123,41 @@ func (req *OfficeRequest) SkipEmptyPages() {
 // Specify that a stream is inserted to the PDF file which contains the original document for archiving purposes.
 func (req *OfficeRequest) AddOriginalDocumentAsStream() {
 	req.values[formFieldAddOriginalDocumentAsStream] = strconv.FormatBool(true)
+}
+
+// Merge sets merge form field.
+func (req *OfficeRequest) Merge(merge bool) {
+	req.values[formFieldMerge] = strconv.FormatBool(merge)
+}
+
+// Pdfa sets pdfa form field.
+func (req *OfficeRequest) Pdfa(pdfa string) {
+	req.values[formFieldPdfa] = pdfa
+}
+
+// Pdfua sets pdfua form field.
+func (req *OfficeRequest) Pdfua(pdfua bool) {
+	req.values[formFieldPdfua] = strconv.FormatBool(pdfua)
+}
+
+// LosslessImageCompression sets losslessImageCompression form field.
+func (req *OfficeRequest) LosslessImageCompression(losslessImageCompression bool) {
+	req.values[formFieldLosslessImageCompression] = strconv.FormatBool(losslessImageCompression)
+}
+
+// Quality sets quality form field.
+func (req *OfficeRequest) Quality(quality int) {
+	req.values[formFieldQuality] = strconv.Itoa(quality)
+}
+
+// ReduceImageResolution sets reduceImageResolution form field.
+func (req *OfficeRequest) ReduceImageResolution(reduceImageResolution bool) {
+	req.values[formFieldReduceImageResolution] = strconv.FormatBool(reduceImageResolution)
+}
+
+// MaxImageResolution sets maxImageResolution form field.
+func (req *OfficeRequest) MaxImageResolution(maxImageResolution int) {
+	req.values[formFieldMaxImageResolution] = strconv.Itoa(maxImageResolution)
 }
 
 func (req *OfficeRequest) postURL() string {
